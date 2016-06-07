@@ -19,7 +19,7 @@ public class PlayerShoot : MonoBehaviour {
 			// instantiate the prefab
             var shot = Instantiate(shotPrefab) as GameObject;
             var current = mcamera.transform.position;
-            shot.transform.position = new Vector3(current.x, 0.25f, current.z);
+            shot.transform.position = new Vector3(current.x, 0.32f, current.z);
             shot.transform.rotation = mcamera.transform.rotation;
 		}
 	}

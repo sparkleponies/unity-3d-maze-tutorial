@@ -17,17 +17,22 @@ public class MovePlayerShot : MonoBehaviour {
         transform.Translate(0, 0, speed * Time.deltaTime);
         float goneFor = (transform.position - start).magnitude;
         if (goneFor > length) {
-            Destroy(this.gameObject);     
+            Kill();    
         }
     }
 
     void OnTriggerEnter(Collider other) {
         var player = other.GetComponent<PlayerCharacter>();
         if (player == null) {
-            Destroy(this.gameObject);  
-            var expl = Instantiate(explosion) as GameObject;
-            expl.transform.position = transform.position;
-            transform.Translate(0, 0, - speed * Time.deltaTime);
+            Kill();  
         }
+    }
+
+    void Kill() {
+        Destroy(this.gameObject);
+        var expl = Instantiate(explosion) as GameObject;
+        expl.transform.rotation = transform.rotation;
+        expl.transform.position = transform.position;
+        expl.transform.Translate(0, 0, - 5 * speed * Time.deltaTime);
     }
 }
