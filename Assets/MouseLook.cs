@@ -24,13 +24,6 @@ public class MouseLook : MonoBehaviour {
         if (body != null) {
             body.freezeRotation = true;
         }
-
-        float x = 0, z = 0;
-        var ch = OpenVR.Chaperone;
-		if (ch != null) {
-			bool ok = ch.GetPlayAreaSize (ref x, ref z);
-			Debug.Log ("Chaperone size = " + ok + ", " + x + ", " + z);
-		}
     }
 
 	// Update is called once per frame

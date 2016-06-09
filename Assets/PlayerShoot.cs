@@ -4,11 +4,16 @@ using System.Collections;
 public class PlayerShoot : MonoBehaviour {
 
 	[SerializeField] private GameObject shotPrefab;
+	[SerializeField] private Camera vrCamera;
 	private Camera mcamera;
 
 	// Use this for initialization
 	void Start () {
-		mcamera = GetComponent<Camera>();
+		if (vrCamera == null || !vrCamera.isActiveAndEnabled) {
+			mcamera = GetComponent<Camera> ();
+		} else {
+			mcamera = vrCamera;
+		}
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
 	}
@@ -19,7 +24,7 @@ public class PlayerShoot : MonoBehaviour {
 			// instantiate the prefab
             var shot = Instantiate(shotPrefab) as GameObject;
             var current = mcamera.transform.position;
-            shot.transform.position = new Vector3(current.x, 0.32f, current.z);
+			shot.transform.position = new Vector3(current.x, current.y, current.z);
             shot.transform.rotation = mcamera.transform.rotation;
 		}
 	}
